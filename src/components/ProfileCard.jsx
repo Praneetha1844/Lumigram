@@ -11,12 +11,12 @@ function ProfileCard({ profilePicture, profileName, username }) {
         <div className="flex flex-col">
           <span className="font-semibold text-gray-800">{profileName}</span>
           {/* Username below the profile name */}
-          <span className="text-sm text-gray-500">{`@${username}`}</span>
+          <span className="text-sm text-gray-600">{`@${username}`}</span>
         </div>
       </div>
 
       {/* Follow Button */}
-      <button type="button" className="py-2 text-blue-500 hover:text-black transition-colors duration-300 text-xs font-bold">
+      <button type="button" className="py-2 text-blue-700 hover:text-black transition-colors duration-300 text-xs font-bold">
         Follow
       </button>
     </div>

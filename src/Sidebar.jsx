@@ -57,6 +57,7 @@ function Sidebar({ isCollapsed, toggleSidebar }) {
                 <button
                   type="button"
                   aria-label={item.label}
+                  aria-expanded={item.toggle ? isCollapsed : undefined}
                   className={itemClass(item)}
                   onClick={item.toggle ? toggleSidebar : undefined}
                 >

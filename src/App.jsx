@@ -19,6 +19,7 @@ const SUGGESTIONS = [2, 3, 4, 5].map((n) => ({
 function App() {
   return (
     <div className="app-container flex ml-[300px]">
+      <h1 className="sr-only">Home</h1>
       <div className="w-[700px] justify-center z-10">
         <div className="h-32 w-[700px] px-[42px] py-[25px]">
           <ScrollableImageDiv />
@@ -34,15 +35,15 @@ function App() {
         <div className="py-[20px]">
           <ProfileCard profilePicture="/img1.png" profileName="User1" username="1" />
           <div className="flex text-sm mt-[10px]">
-            <div className="text-gray-400 mr-[100px] mt-[5px] font-bold">Suggested for you</div>
+            <div className="text-gray-500 mr-[100px] mt-[5px] font-bold">Suggested for you</div>
             <div className="text-xs ml-[20px] font-bold">See All</div>
           </div>
         </div>
         {SUGGESTIONS.map((s) => (
           <ProfileCard key={s.username} {...s} />
         ))}
-        <div className="mt-[70px] px-[9px] text-xs text-gray-400">About · Help · Press · API · Jobs · Privacy · Terms</div>
-        <div className="mt-[7px] px-[9px] text-xs text-gray-400">Locations · Language</div>
+        <div className="mt-[70px] px-[9px] text-xs text-gray-500">About · Help · Press · API · Jobs · Privacy · Terms</div>
+        <div className="mt-[7px] px-[9px] text-xs text-gray-500">Locations · Language</div>
       </aside>
     </div>
   );

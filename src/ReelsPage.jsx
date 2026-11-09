@@ -9,6 +9,7 @@ const REELS = [
 function ReelsPage() {
   return (
     <div className="p-8 flex flex-col items-center justify-center px-[610px]">
+      <h1 className="sr-only">Reels</h1>
       {REELS.map((reel) => (
         <div key={reel.username} className="mb-4 rounded-lg overflow-hidden shadow-lg">
           <Reel {...reel} />
