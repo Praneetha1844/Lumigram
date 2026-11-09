@@ -4,18 +4,24 @@ const VIDEOS = [
   { src: '/Video3.mp4', poster: '/img3.png', shape: 'square' },
   { src: '/Video3.mp4', poster: '/img4.png', shape: 'square' },
   { src: '/Video5.mp4', poster: '/img5.png', shape: 'square' },
-  { src: '/Video1.mp4', poster: '/img6.png', shape: 'vertical' },
+  { src: '/Video1.mp4', poster: '/img5.png', shape: 'vertical' },
   { src: '/Video1.mp4', poster: '/img2.png', shape: 'square' },
   { src: '/Video2.mp4', poster: '/img1.png', shape: 'square' },
   { src: '/Video3.mp4', poster: '/img3.png', shape: 'square' },
   { src: '/Video3.mp4', poster: '/img4.png', shape: 'square' },
   { src: '/Video5.mp4', poster: '/img5.png', shape: 'vertical' },
-  { src: '/Video1.mp4', poster: '/img6.png', shape: 'square' },
+  { src: '/Video1.mp4', poster: '/img5.png', shape: 'square' },
 ];
+
+// play() returns a promise that rejects if playback is interrupted (for example by a quick
+// mouse-leave); the rejection is expected and safe to ignore.
+const play = (e) => e.currentTarget.play().catch(() => {});
+const pause = (e) => e.currentTarget.pause();
 
 function ExplorePage() {
   return (
     <div className="ml-[20.6667%] justify-center">
+      <h1 className="sr-only">Explore</h1>
       <div className="p-4">
         <div className="grid grid-cols-3 grid-rows-3 gap-4">
           {VIDEOS.map((video, index) => (
@@ -34,10 +40,10 @@ function ExplorePage() {
                 preload="none"
                 tabIndex={0}
                 className="w-full h-full object-cover"
-                onMouseEnter={(e) => e.target.play()}
-                onMouseLeave={(e) => e.target.pause()}
-                onFocus={(e) => e.target.play()}
-                onBlur={(e) => e.target.pause()}
+                onMouseEnter={play}
+                onMouseLeave={pause}
+                onFocus={play}
+                onBlur={pause}
               />
             </div>
           ))}
