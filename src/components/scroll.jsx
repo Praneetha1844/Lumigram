@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 function ScrollableImageDiv() {
   const scrollContainerRef = useRef(null);
@@ -19,10 +19,12 @@ function ScrollableImageDiv() {
     <div className="relative w-full flex items-center">
       {/* Left Icon */}
       <button
+        type="button"
+        aria-label="Scroll stories left"
         className="absolute left-0 z-10 bg-gray-200 rounded-full p-2 shadow hover:bg-gray-300"
         onClick={scrollLeft}
       >
-        <img src="/left.png" alt="Scroll Left" className="h-4 w-4" />
+        <img src="/left.png" alt="" className="h-4 w-4" />
       </button>
 
       {/* Scrollable Image Container */}
@@ -35,11 +37,9 @@ function ScrollableImageDiv() {
           <div key={i} className="flex flex-col items-center space-y-2">
             <div className="relative h-[60px] w-[60px] rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500  p-[2px]">
               <div className="h-full w-full rounded-full bg-white flex items-center justify-center">
-                <img
-                  src={`https://via.placeholder.com/100?text=${i + 1}`}
-                  alt={`Profile ${i + 1}`}
-                  className="h-[54px] w-[54px] rounded-full"
-                />
+                <span className="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-gray-200 text-gray-600">
+                  {i + 1}
+                </span>
               </div>
             </div>
             <span className="text-xs text-gray-500">
@@ -51,10 +51,12 @@ function ScrollableImageDiv() {
 
       {/* Right Icon */}
       <button
+        type="button"
+        aria-label="Scroll stories right"
         className="absolute right-0 z-10 bg-gray-200 rounded-full p-2 shadow hover:bg-gray-300"
         onClick={scrollRight}
       >
-        <img src="/right.png" alt="Scroll Right" className="h-4 w-4" />
+        <img src="/right.png" alt="" className="h-4 w-4" />
       </button>
     </div>
   );

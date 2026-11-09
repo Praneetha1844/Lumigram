@@ -1,173 +1,88 @@
-// Sidebar.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+const NAV_ITEMS = [
+  { label: 'Home', icon: '/home.png', to: '/' },
+  { label: 'Search', icon: '/search-interface-symbol.png', toggle: true },
+  { label: 'Explore', icon: '/compass.png', to: '/explore' },
+  { label: 'Reels', icon: '/image.png', to: '/reels' },
+  { label: 'Messages', icon: '/mess.png' },
+  { label: 'Notifications', icon: '/heart.png' },
+  { label: 'Create', icon: '/create.png' },
+  { label: 'Profile', icon: '/profile.jpg', round: true },
+  { label: 'AI Studio', icon: '/profile.jpg', round: true, gapBefore: true },
+  { label: 'Threads', icon: '/threads.png' },
+  { label: 'More', icon: '/more.png' },
+];
 
 function Sidebar({ isCollapsed, toggleSidebar }) {
-    const navigate = useNavigate();
-    const handleNavigate = () => {
-        console.log('Navigating to /explore'); // Check if this is printed in the console
-        navigate('/explore'); 
-      }; 
-      const handleNavigatee = () => {
-        console.log('Navigating to /'); // Check if this is printed in the console
-        navigate('/'); 
-      }; 
+  const itemClass = (item, isActive = false) =>
+    `m-2 flex w-[calc(100%-1rem)] items-center py-3 cursor-pointer rounded-lg hover:bg-gray-100 ${
+      isCollapsed ? 'justify-center' : ''
+    } ${item.gapBefore ? 'mt-10' : ''} ${isActive ? 'font-bold' : ''}`;
 
-      const handleNavigat = () => {
-        console.log('Navigating to /reels'); // Check if this is printed in the console
-        navigate('/reels'); 
-      }; 
+  const content = (item) => (
+    <>
+      <img
+        src={item.icon}
+        alt=""
+        className={`h-6 w-6 ${isCollapsed ? '' : 'ml-3 mr-4'} ${item.round ? 'rounded-full' : ''}`}
+      />
+      {!isCollapsed && <span>{item.label}</span>}
+    </>
+  );
 
-
-    return (
-        <div className="relative">
-            {/* Sidebar */}
-            <div
-                className={`fixed ${isCollapsed ? 'w-[72px]' : 'w-1/6'
-                    } justify-center border-r  h-[1000px] transition-all duration-300 z-10 `}
-            >
-                <img
-                    src={isCollapsed ? "/logo.png" : "/Instagram_logo.svg.png"}
-                    alt="Instagram Logo"
-                    className={`h-10 mt-8 ${isCollapsed ? 'h-[20px] ml-7' : 'ml-5 mr-20'}`}
-                />
-                <div
-                    className={`space-y-1.5 border border-white h-[460px] mt-7 mb-10 ${isCollapsed ? 'items-center' : ''
-                        }`}
-                >
-                    <div
-                        className={`m-2 flex py-2 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                            onClick={handleNavigatee}
-                    >
-                        <img src="/home.png" alt="Home" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>Home</span>}
-                    </div>
-
-                    <button
-                        className={`m-2 flex w-full py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : 'items-center'
-                            }`}
-                        onClick={toggleSidebar}
-                    >
-                        <img
-                            src="/search-interface-symbol.png"
-                            alt="Search"
-                            className="h-6 w-6 ml-3 mr-4"
-                        />
-                        {!isCollapsed && <span>Search</span>}
-                    </button>
-
-
-
-                    {/* Other Sidebar Items */}
-                    <button
-                        className={`m-2 flex w-full py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : 'items-center'
-                            }`}
-                        onClick={handleNavigate}
-                    >
-                        <img
-                            src="/compass.png"
-                            alt="Compass"
-                            className="h-6 w-6 ml-3 mr-4"
-                        />
-                        {!isCollapsed && <span>Explore</span>}
-                    </button>
-
-                    <button
-                        className={`m-2 flex w-full py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : 'items-center'
-                            }`}
-                        onClick={handleNavigat}
-                    >
-                        <img
-                            src="/image.png"
-                            alt="Reels"
-                            className="h-6 w-6 ml-3 mr-4"
-                        />
-                        {!isCollapsed && <span>Reels</span>}
-                    </button>
-
-                  
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/mess.png" alt="Messages" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>Messages</span>}
-                    </div>
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/heart.png" alt="Notifications" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>Notifications</span>}
-                    </div>
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/create.png" alt="Create" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>Create</span>}
-                    </div>
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg mb-8 ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/profile.jpg" alt="Profile" className="h-6 w-6 ml-3 mr-4 rounded-full" />
-                        {!isCollapsed && <span>Profile</span>}
-                    </div>
-                     <div className="mt-9 h-[40px]"></div>
-                    <div
-                        className={` mt-9 m-2 flex py-2 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${
-                            isCollapsed ? 'justify-center' : ''
-                        }`}
-                        >
-                        <img
-                            src="/profile.jpg"
-                            alt="AI Studio"
-                            className=" h-6 w-6 ml-3 mr-4 rounded-full"
-                        />
-                        {!isCollapsed && <span>AI Studio</span>}
-                        </div>
-
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/threads.png" alt="Threads" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>Threads</span>}
-                    </div>
-
-                    <div
-                        className={`m-2 flex py-3 border border-white cursor-pointer hover:bg-gray-100 rounded-lg ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                    >
-                        <img src="/more.png" alt="More" className="h-6 w-6 ml-3 mr-4" />
-                        {!isCollapsed && <span>More</span>}
-                    </div>
-                </div>
-            </div>
-
-            {/* Conditionally render div beside the sidebar when isCollapsed is true */}
-            {isCollapsed && (
-                <div
-                    className="fixed  left-[72px] h-[1000px] p-4 border border-grey w-[400px] shadow-lg z-20 bg-white rounded-lg "        >
-                    {/* Your content here */}
-                    <p className="ml-[10px] py-[8px] mb-[20px] font-bold text-2xl ">Search</p>
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="border border-gray-300 rounded-lg w-[370px] mb-[30px] p-2"></input>
-                    <p className="ml-[8px] py-[8px] mb-[20px] font-bold ">Recent</p>
-                </div>
-            )}
+  return (
+    <div className="relative">
+      <nav
+        aria-label="Primary"
+        className={`fixed ${isCollapsed ? 'w-[72px]' : 'w-1/6'} h-screen border-r transition-all duration-300 z-10`}
+      >
+        <div className={`mt-8 mb-6 text-2xl font-semibold ${isCollapsed ? 'text-center' : 'ml-5'}`}>
+          {isCollapsed ? 'L' : 'Lumigram'}
         </div>
-    );
+
+        <ul className="space-y-1.5">
+          {NAV_ITEMS.map((item) => (
+            <li key={item.label}>
+              {item.to ? (
+                <NavLink
+                  to={item.to}
+                  end
+                  aria-label={item.label}
+                  className={({ isActive }) => itemClass(item, isActive)}
+                >
+                  {content(item)}
+                </NavLink>
+              ) : (
+                <button
+                  type="button"
+                  aria-label={item.label}
+                  className={itemClass(item)}
+                  onClick={item.toggle ? toggleSidebar : undefined}
+                >
+                  {content(item)}
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Search panel, shown while the sidebar is collapsed */}
+      {isCollapsed && (
+        <div className="fixed left-[72px] z-20 h-screen w-[400px] rounded-lg border bg-white p-4 shadow-lg">
+          <p className="mb-5 ml-2.5 py-2 text-2xl font-bold">Search</p>
+          <input
+            type="search"
+            aria-label="Search"
+            placeholder="Search"
+            className="mb-8 w-full rounded-lg border border-gray-300 p-2"
+          />
+          <p className="mb-5 ml-2 py-2 font-bold">Recent</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Sidebar;

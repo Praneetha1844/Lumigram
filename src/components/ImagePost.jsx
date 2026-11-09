@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ImagePost({ profilePicture, profileName, postImage, likesCount }) {
   return (
     <div className="border rounded-lg shadow-sm mb-6 bg-white">
@@ -7,7 +5,8 @@ function ImagePost({ profilePicture, profileName, postImage, likesCount }) {
       <div className="flex items-center p-4">
         <img
           src={profilePicture}
-          alt="Profile"
+          alt={`${profileName} profile picture`}
+          loading="lazy"
           className="h-10 w-10 rounded-full mr-4"
         />
         <span className="font-semibold text-gray-800">{profileName}</span>
@@ -17,8 +16,9 @@ function ImagePost({ profilePicture, profileName, postImage, likesCount }) {
       <div>
         <img
           src={postImage}
-          alt="Post content"
-          className="w-full h-[500px]"
+          alt={`Post by ${profileName}`}
+          loading="lazy"
+          className="w-full h-[500px] object-cover"
         />
       </div>
 
@@ -27,36 +27,36 @@ function ImagePost({ profilePicture, profileName, postImage, likesCount }) {
         {/* Left Actions */}
         <div className="flex space-x-4">
           {/* Like Icon */}
-          <button className="focus:outline-none">
+          <button type="button" aria-label="Like" className="focus:outline-none">
             <img
               src="/heart.png"
-              alt="Like"
+              alt=""
               className="h-6 w-6"
             />
           </button>
           {/* Comment Icon */}
-          <button className="focus:outline-none">
+          <button type="button" aria-label="Comment" className="focus:outline-none">
             <img
               src="/comment.png"
-              alt="Comment"
+              alt=""
               className="h-6 w-6"
             />
           </button>
           {/* Share Icon */}
-          <button className="focus:outline-none">
+          <button type="button" aria-label="Share" className="focus:outline-none">
             <img
               src="/share.png"
-              alt="Share"
+              alt=""
               className="h-6 w-6"
             />
           </button>
         </div>
 
         {/* Save Icon */}
-        <button className="focus:outline-none">
+        <button type="button" aria-label="Save" className="focus:outline-none">
           <img
             src="/save.png"
-            alt="Save"
+            alt=""
             className="h-6 w-6"
           />
         </button>

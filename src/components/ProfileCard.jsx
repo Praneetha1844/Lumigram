@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ProfileCard({ profilePicture, profileName, username }) {
   return (
     <div className="flex items-center justify-between bg-white p-1 mb-[5px] w-[315px] ">
@@ -7,7 +5,7 @@ function ProfileCard({ profilePicture, profileName, username }) {
       <div className="flex items-center space-x-2">
         <img
           src={profilePicture}
-          alt="Profile"
+          alt={`${profileName} profile picture`}
           className="h-12 w-12 rounded-full"
         />
         <div className="flex flex-col">
@@ -18,7 +16,7 @@ function ProfileCard({ profilePicture, profileName, username }) {
       </div>
 
       {/* Follow Button */}
-      <button className="py-2 text-blue-500 hover:text-black transition-colors duration-300 text-xs font-bold">
+      <button type="button" className="py-2 text-blue-500 hover:text-black transition-colors duration-300 text-xs font-bold">
         Follow
       </button>
     </div>
